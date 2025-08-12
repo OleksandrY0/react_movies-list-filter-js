@@ -1,6 +1,6 @@
 import './App.scss';
-import { MoviesList } from './components/MoviesList';
 import { useState } from 'react';
+import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
 
 function filter(movies, query) {
@@ -20,7 +20,7 @@ function filter(movies, query) {
 export const App = () => {
   const [query, setQuery] = useState('');
 
-  const movies = filter(moviesFromServer, query);
+  const visibleMovies = filter(moviesFromServer, query);
 
   return (
     <div className="page">
@@ -39,13 +39,13 @@ export const App = () => {
                 className="input"
                 placeholder="Type search word"
                 value={query}
-                onChange={e => setQuery(e.target.value)}
+                onChange={event => setQuery(event.target.value)}
               />
             </div>
           </div>
         </div>
 
-        <MoviesList movies={movies} />
+        <MoviesList movies={visibleMovies} />
       </div>
 
       <div className="sidebar">Sidebar goes here</div>
